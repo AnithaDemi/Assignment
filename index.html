@@ -1,203 +1,132 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dynamic Product Selection</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f8f8f8;
-            text-align: center;
-            padding: 20px;
-        }
-        .container {
-            background: white;
-            width: 350px;
-            margin: auto;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-        .product-option {
-            border: 2px solid #ddd;
-            border-radius: 8px;
-            padding: 10px;
-            margin: 10px 0;
-            text-align: left;
-            position: relative;
-            cursor: pointer;
-        }
-        .product-option label {
-            font-weight: bold;
-            cursor: pointer;
-        }
-        .discount-tag {
-            background: red;
-            color: white;
-            font-size: 12px;
-            padding: 2px 5px;
-            border-radius: 4px;
-            margin-left: 5px;
-        }
-        .most-popular {
-            position: absolute;
-            top: -12px;
-            right: 10px;
-            background: purple;
-            color: white;
-            font-size: 12px;
-            padding: 3px 8px;
-            border-radius: 5px;
-        }
-        .highlight {
-            border: 2px solid orange !important;
-        }
-        .size-color-selection {
-            display: none;
-            margin-top: 10px;
-        }
-        .size-color-selection select {
-            width: 100%;
-            padding: 5px;
-            margin: 5px 0;
-        }
-        .price {
-            font-size: 18px;
-            font-weight: bold;
-            margin-top: 5px;
-        }
-        .add-to-cart {
-            background: #ff4081;
-            color: white;
-            border: none;
-            padding: 10px;
-            width: 100%;
-            border-radius: 5px;
-            font-size: 16px;
-            cursor: pointer;
-            margin-top: 10px;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SS Selection</title>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-
-<div class="container">
-    <h2>Assignment</h2>
-
-    <div class="product-option" onclick="updateSelection(1)">
-        <input type="radio" name="product" id="unit1" value="10">
-        <label for="unit1">1 Unit <span class="discount-tag">10% Off</span></label>
-        <div class="price">$10.00 USD <del>$12.00 USD</del></div>
-        <div class="size-color-selection" id="sizeColorSelection1">
-            <label>#1 Size & Color:</label>
-            <select class="size">
-                <option>S</option>
-                <option>M</option>
-                <option>L</option>
-            </select>
-            <select class="color">
-                <option>Black</option>
-                <option>White</option>
-                <option>Blue</option>
-            </select>
-        </div>
+  <div class="shop-container">
+    <div class="shop-header">
+      <h1 class="shop-title">SS Collections</h1>
+      <div class="flash-sale">FLASH SALE TODAY!</div>
     </div>
 
-    <div class="product-option highlight" onclick="updateSelection(2)">
-        <input type="radio" name="product" id="unit2" value="18">
-        <label for="unit2">2 Unit <span class="discount-tag">20% Off</span></label>
-        <span class="most-popular">MOST POPULAR</span>
-        <div class="price">$18.00 USD <del>$24.00 USD</del></div>
-        <div class="size-color-selection" id="sizeColorSelection2">
-            <label>#1 Size & Color:</label>
-            <select class="size">
-                <option>S</option>
-                <option>M</option>
-                <option>L</option>
-            </select>
-            <select class="color">
-                <option>Black</option>
-                <option>White</option>
-                <option>Blue</option>
-            </select>
-            <label>#2 Size & Color:</label>
-            <select class="size">
-                <option>S</option>
-                <option>M</option>
-                <option>L</option>
-            </select>
-            <select class="color">
-                <option>Black</option>
-                <option>White</option>
-                <option>Blue</option>
-            </select>
+    <!-- Bundle 1 -->
+    <div id="bundle-1" class="bundle-container">
+      <div class="bundle-header" data-bundle="1">
+        <input type="radio" name="bundle-selection" id="bundle-radio-1" class="radio-btn">
+        <div class="bundle-info">
+          <div class="bundle-name">Starter Pack</div>
+          <div class="pricing">
+            <span class="current-price">$24.99</span>
+            <div>
+              <span class="original-price"><del>$34.99</del></span>
+              <span class="discount">28% OFF</span>
+            </div>
+          </div>
         </div>
+      </div>
+      <div class="options-panel" id="options-1">
+        <div class="option-item">
+          <div class="item-number">#1</div>
+          <div class="select-group">
+            <select class="custom-select size-select">
+              <option value="xs">XS</option>
+              <option value="s" selected>S</option>
+              <option value="m">M</option>
+              <option value="l">L</option>
+              <option value="xl">XL</option>
+            </select>
+            <select class="custom-select color-select">
+              <option value="navy" selected>Navy</option>
+              <option value="cream">Cream</option>
+              <option value="sage">Sage</option>
+              <option value="coral">Coral</option>
+            </select>
+          </div>
+        </div>
+      </div>
     </div>
 
-    <div class="product-option" onclick="updateSelection(3)">
-        <input type="radio" name="product" id="unit3" value="24">
-        <label for="unit3">3 Unit <span class="discount-tag">30% Off</span></label>
-        <div class="price">$24.00 USD <del>$36.00 USD</del></div>
-        <div class="size-color-selection" id="sizeColorSelection3">
-            <label>#1 Size & Color:</label>
-            <select class="size">
-                <option>S</option>
-                <option>M</option>
-                <option>L</option>
-                <option>XL</option>
-            </select>
-            <select class="color">
-                <option>Black</option>
-                <option>White</option>
-                <option>Blue</option>
-            </select>
-            <label>#2 Size & Color:</label>
-            <select class="size">
-                <option>S</option>
-                <option>M</option>
-                <option>L</option>
-                <option>XL</option>
-            </select>
-            <select class="color">
-                <option>Black</option>
-                <option>White</option>
-                <option>Blue</option>
-            </select>
-            <label>#3 Size & Color:</label>
-            <select class="size">
-                <option>S</option>
-                <option>M</option>
-                <option>L</option>
-                <option>XL</option>
-            </select>
-            <select class="color">
-                <option>Black</option>
-                <option>White</option>
-                <option>Blue</option>
-            </select>
+    <!-- Bundle 2 -->
+    <div id="bundle-2" class="bundle-container">
+      <div class="bundle-header" data-bundle="2">
+        <input type="radio" name="bundle-selection" id="bundle-radio-2" class="radio-btn">
+        <div class="bundle-info">
+          <div class="bundle-name">Premium Pack</div>
+          <div class="pricing">
+            <span class="current-price">$39.99</span>
+            <div>
+              <span class="original-price"><del>$49.99</del></span>
+              <span class="discount">20% OFF</span>
+            </div>
+          </div>
         </div>
+      </div>
+      <div class="options-panel" id="options-2">
+        <div class="option-item">
+          <div class="item-number">#1</div>
+          <div class="select-group">
+            <select class="custom-select size-select">
+              <option value="xs">XS</option>
+              <option value="s">S</option>
+              <option value="m" selected>M</option>
+              <option value="l">L</option>
+              <option value="xl">XL</option>
+            </select>
+            <select class="custom-select color-select">
+              <option value="navy">Navy</option>
+              <option value="cream">Cream</option>
+              <option value="sage" selected>Sage</option>
+              <option value="coral">Coral</option>
+            </select>
+          </div>
+        </div>
+      </div>
     </div>
 
-    <button class="add-to-cart">+ Add to Cart</button>
-</div>
+    <!-- Bundle 3 -->
+    <div id="bundle-3" class="bundle-container">
+      <div class="bundle-header" data-bundle="3">
+        <input type="radio" name="bundle-selection" id="bundle-radio-3" class="radio-btn">
+        <div class="bundle-info">
+          <div class="bundle-name">Ultimate Pack</div>
+          <div class="pricing">
+            <span class="current-price">$59.99</span>
+            <div>
+              <span class="original-price"><del>$79.99</del></span>
+              <span class="discount">25% OFF</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="options-panel" id="options-3">
+        <div class="option-item">
+          <div class="item-number">#1</div>
+          <div class="select-group">
+            <select class="custom-select size-select">
+              <option value="xs">XS</option>
+              <option value="s">S</option>
+              <option value="m">M</option>
+              <option value="l" selected>L</option>
+              <option value="xl">XL</option>
+            </select>
+            <select class="custom-select color-select">
+              <option value="navy">Navy</option>
+              <option value="cream" selected>Cream</option>
+              <option value="sage">Sage</option>
+              <option value="coral">Coral</option>
+            </select>
+          </div>
+        </div>
+      </div>
+    </div>
 
-<script>
-    function updateSelection(unit) {
-        document.querySelectorAll('.product-option').forEach(option => {
-            option.classList.remove('highlight');
-        });
+    <button class="add-to-cart">Add to Cart</button>
+  </div>
 
-        document.querySelectorAll('.size-color-selection').forEach(selection => {
-            selection.style.display = 'none';
-        });
-
-        document.getElementById(`unit${unit}`).checked = true;
-        document.getElementById(`unit${unit}`).parentElement.classList.add('highlight');
-        document.getElementById(`sizeColorSelection${unit}`).style.display = 'block';
-    }
-
-    </script>
-
+  <script src="script.js"></script>
 </body>
 </html>
